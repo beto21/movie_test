@@ -2,6 +2,8 @@ package com.example.myapplication.presentation.home
 
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
+import androidx.recyclerview.widget.ConcatAdapter
 import com.example.myapplication.databinding.FragmentMoviesBinding
 import com.example.myapplication.extensions.collectLastestLyfeCycleFlow
 import com.example.myapplication.extensions.showToast
@@ -24,6 +26,7 @@ class MoviesFragment : BaseFragment<MoviesViewModel, FragmentMoviesBinding>
     (FragmentMoviesBinding::inflate) {
     override val vm: MoviesViewModel by viewModels()
     override val TAG: String = MoviesFragment::class.java.name
+    private lateinit var concatAdapter: ConcatAdapter
     private val moviePosterAdapter by lazy {
         MoviePosterAdapter { movie: MoviePlayNow ->
             val id = movie.id
@@ -43,6 +46,8 @@ class MoviesFragment : BaseFragment<MoviesViewModel, FragmentMoviesBinding>
         }
     }
 
+
+
     override fun setupUI() {
         super.setupUI()
         binding.vm = vm
@@ -51,12 +56,12 @@ class MoviesFragment : BaseFragment<MoviesViewModel, FragmentMoviesBinding>
 
 
     private fun initRecyclerview() {
-        moviePageAdapter.withLoadStateFooter(footer = LoadStateAdapter())
+        concatAdapter = moviePageAdapter.withLoadStateFooter(footer = LoadStateAdapter())
         binding.recycler.apply {
             setHasFixedSize(true)
             setItemViewCacheSize(8)
             addItemDecoration(SpaceItemDecorationVertical(32))
-            adapter = moviePageAdapter
+            adapter = concatAdapter
         }
         binding.recyclerOne.apply {
             setHasFixedSize(true)
@@ -74,6 +79,11 @@ class MoviesFragment : BaseFragment<MoviesViewModel, FragmentMoviesBinding>
         observerMoviesPage()
         observerPostersMovies()
 
+        requireActivity().collectLastestLyfeCycleFlow(moviePageAdapter.loadStateFlow) {
+            it.refresh is LoadState.Loading
+            it.refresh !is LoadState.Loading
+            it.refresh is LoadState.Error
+        }
 
     }
 
