@@ -43,7 +43,7 @@ android {
             buildConfigField "String", "BASE_URL", '"https://api.themoviedb.org/3/"'
             buildConfigField "String", "API_KEY",'"57c03784e01c87db8bdafa013c6fdfe3"'
             buildConfigField "String", "BASE_URL_IMAGE", '"https://image.tmdb.org/t/p/"'
-            buildConfigField "String", "DATABASE_NAME", '"climate_db"'
+            buildConfigField "String", "DATABASE_NAME", '"movie_db"'
 
 
 
@@ -54,7 +54,7 @@ android {
             buildConfigField "String", "BASE_URL", '"https://api.themoviedb.org/3/"'
             buildConfigField "String", "API_KEY",'"57c03784e01c87db8bdafa013c6fdfe3"'
             buildConfigField "String", "BASE_URL_IMAGE", '"https://image.tmdb.org/t/p/"'
-            buildConfigField "String", "DATABASE_NAME", '"climate_db"'
+            buildConfigField "String", "DATABASE_NAME", '"movie_db"'
 
 
 

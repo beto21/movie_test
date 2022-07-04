@@ -1,6 +1,6 @@
 package com.example.myapplication.utils
 
-const val DATABASE_NAME = "db_climate"
+const val DATABASE_NAME = "db_movie"
 
 const val BASE_URL_HEROES = "baseUrlHero"
 const val BASE_URL_MOVIES = "baseUrlMovies"
