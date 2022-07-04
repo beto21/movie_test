@@ -5,6 +5,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.myapplication.databinding.MovieDetailFragmentBinding
 import com.example.myapplication.extensions.collectLastestLyfeCycleFlow
+import com.example.myapplication.extensions.showToast
 import com.example.myapplication.model.Movie
 import com.example.myapplication.presentation.base.BaseFragment
 import com.example.myapplication.presentation.commons.UIState
@@ -31,21 +32,19 @@ class MovieDetailFragment :
     override fun setupVM() {
         super.setupVM()
         requireActivity().collectLastestLyfeCycleFlow(vm.movieFlow) { uiState ->
-            when (uiState) {
-                is UIState.Success<*> -> {
-                    binding.movie = uiState.data as Movie
-                }
-                is UIState.Error -> {
-                    Toast.makeText(requireContext(), uiState.message, Toast.LENGTH_LONG)
-                        .show()
-                }
-                else -> {}
-            }
-
-
+            movieDetailState(uiState)
         }
 
 
+    }
+
+    private fun movieDetailState(uiState: UIState) {
+        when (uiState) {
+            is UIState.Success<*> -> binding.movie = uiState.data as Movie
+            is UIState.Error ->  requireActivity().showToast(uiState.message!!)
+            else ->{}
+
+        }
     }
 
 }

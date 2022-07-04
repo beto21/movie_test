@@ -1,6 +1,5 @@
 package com.example.myapplication.presentation.home
 
-import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.databinding.FragmentMoviesBinding
@@ -24,25 +23,25 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 class MoviesFragment : BaseFragment<MoviesViewModel, FragmentMoviesBinding>
     (FragmentMoviesBinding::inflate) {
     override val vm: MoviesViewModel by viewModels()
-    private var loading = false
     override val TAG: String = MoviesFragment::class.java.name
-    private val movieAdapter by lazy { MovieAdapter() }
-    private val moviePosterAdapter by lazy { MoviePosterAdapter() }
-    private val moviePageAdapter by lazy { MoviePageAdapter{ movie: Movie ->
-        val id = movie.id
-        val action =
-            MoviesFragmentDirections.actionMoviesFragmentToMovieDetailFragment(id.toInt())
-        findNavController().navigate(action)
-
-    } }
-    private val itemClickPlayin = { movie: MoviePlayNow ->
-        val id = movie.id
-        val action =
-            MoviesFragmentDirections.actionMoviesFragmentToMovieDetailFragment(id.toInt())
-        findNavController().navigate(action)
+    private val moviePosterAdapter by lazy {
+        MoviePosterAdapter { movie: MoviePlayNow ->
+            val id = movie.id
+            val action =
+                MoviesFragmentDirections.actionMoviesFragmentToMovieDetailFragment(id.toInt())
+            findNavController().navigate(action)
+        }
 
     }
+    private val moviePageAdapter by lazy {
+        MoviePageAdapter { movie: Movie ->
+            val id = movie.id
+            val action =
+                MoviesFragmentDirections.actionMoviesFragmentToMovieDetailFragment(id.toInt())
+            findNavController().navigate(action)
 
+        }
+    }
 
     override fun setupUI() {
         super.setupUI()
@@ -66,15 +65,12 @@ class MoviesFragment : BaseFragment<MoviesViewModel, FragmentMoviesBinding>
         }
 
 
-
     }
 
 
     override fun setupVM() {
         super.setupVM()
-        //vm.getMovies()
         vm.getMoviesPosters()
-        //observerMovies()
         observerMoviesPage()
         observerPostersMovies()
 
@@ -89,47 +85,20 @@ class MoviesFragment : BaseFragment<MoviesViewModel, FragmentMoviesBinding>
         }
     }
 
-
-    private fun observerMovies() {
-        requireActivity().collectLastestLyfeCycleFlow(vm.moviesFlow) { uiState ->
-            binding.itemProgressBar.visibility = View.GONE
-            when (uiState) {
-                is UIState.Success<*> -> {
-                    @Suppress("UNCHECKED_CAST")
-                    val movies = (uiState.data as List<Movie>)
-                    movieAdapter.set(movies)
-                    //movieAdapter.onItemClicked = itemClick
-                }
-                is UIState.Error -> {
-                    uiState.message?.let { message ->
-                        requireActivity().showToast(message)
-                    }
-                }
-                else -> {}
-            }
-
+    private fun observerPostersMovies() {
+        requireActivity().collectLastestLyfeCycleFlow(vm.moviesPostersFlow) { uiState ->
+            moviePosterState(uiState)
         }
     }
 
-    private fun observerPostersMovies() {
-        requireActivity().collectLastestLyfeCycleFlow(vm.moviesPostersFlow) { uiState ->
-            when (uiState) {
-                is UIState.Success<*> -> {
-                    @Suppress("UNCHECKED_CAST")
-                    val movies = (uiState.data as List<MoviePlayNow>)
-
-                   moviePosterAdapter.set(movies)
-                   moviePosterAdapter.onItemClicked = itemClickPlayin
-
-                }
-                is UIState.Error -> {
-                    uiState.message?.let { message ->
-                        requireActivity().showToast(message)
-                    }
-                }
-                else -> {}
-            }
+    @Suppress("UNCHECKED_CAST")
+    private fun moviePosterState(uiState: UIState) {
+        when (uiState) {
+            is UIState.Success<*> -> moviePosterAdapter.set(uiState.data as List<MoviePlayNow>)
+            is UIState.Error -> requireActivity().showToast(uiState.message!!)
+            else -> {}
         }
+
     }
 
 

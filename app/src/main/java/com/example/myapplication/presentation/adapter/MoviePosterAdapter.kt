@@ -6,9 +6,9 @@ import com.example.myapplication.presentation.base.BaseViewHolder
 import com.example.myapplication.presentation.viewholder.MoviePostherViewHolder
 import com.example.myapplication.model.MoviePlayNow
 
-class MoviePosterAdapter : BaseAdapter<MoviePlayNow,ItemPortadaBinding>(ItemPortadaBinding::inflate) {
+class MoviePosterAdapter( override var onItemClicked: (data: MoviePlayNow) -> Unit ) : BaseAdapter<MoviePlayNow,ItemPortadaBinding>(ItemPortadaBinding::inflate) {
 
-    override var onItemClicked: (data: MoviePlayNow) -> Unit = {}
+
     override fun set(data: List<MoviePlayNow>) {
        submitList(data)
     }
