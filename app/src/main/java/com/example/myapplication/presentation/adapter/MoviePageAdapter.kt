@@ -7,7 +7,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.ItemMovieBinding
-import com.example.myapplication.model.Movie
+import com.example.myapplication.model.movie.Movie
 
 class MoviePageAdapter(var onItemClick: (Movie) -> Unit) : PagingDataAdapter<Movie, MoviePageViewHolder>(MovieDiffCallBack()) {
 

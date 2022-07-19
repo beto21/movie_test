@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.map
 import com.example.myapplication.BuildConfig
 import com.example.myapplication.data.movie.ApiMovie
 import com.example.myapplication.data.movie.MoviePagingSource
@@ -13,8 +12,8 @@ import com.example.myapplication.data.room.AppDb
 import com.example.myapplication.error.ResourceNotFoundException
 import com.example.myapplication.utils.ORIGINAL
 import com.example.myapplication.utils.SIZE_W500
-import com.example.myapplication.model.Movie
-import com.example.myapplication.model.MoviePlayNow
+import com.example.myapplication.model.movie.Movie
+import com.example.myapplication.model.movie.MoviePlayNow
 import com.santander.globile.superherotest.utils.network.ConnectionProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*

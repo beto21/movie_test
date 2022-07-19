@@ -2,7 +2,7 @@ package com.example.myapplication.data.room.converter
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
-import com.example.myapplication.model.Genre
+import com.example.myapplication.model.movie.Genre
 
 
 class GenresConverter {

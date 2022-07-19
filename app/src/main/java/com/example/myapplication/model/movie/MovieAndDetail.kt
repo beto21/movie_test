@@ -1,4 +1,4 @@
-package com.example.myapplication.model
+package com.example.myapplication.model.movie
 
 import androidx.room.Embedded
 import androidx.room.Relation

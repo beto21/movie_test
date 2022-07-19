@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/moviesFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/moviesFragment"
-        android:name="com.example.myapplication.presentation.home.MoviesFragment"
+        android:name="com.example.myapplication.presentation.movies.MoviesFragment"
         android:label="MoviesFragment"
         tools:layout="@layout/fragment_movies">
         <action
@@ -23,4 +23,14 @@
             android:name="id"
             app:argType="integer" />
     </fragment>
+    <fragment
+        tools:layout="@layout/home_fragment"
+        android:id="@+id/homeFragment"
+        android:name="com.example.myapplication.presentation.home.HomeFragment"
+        android:label="HomeFragment" />
+    <fragment
+        tools:layout="@layout/agenda_fragment"
+        android:id="@+id/agendaFragment"
+        android:name="com.example.myapplication.presentation.agenda.AgendaFragment"
+        android:label="AgendaFragment" />
 </navigation>

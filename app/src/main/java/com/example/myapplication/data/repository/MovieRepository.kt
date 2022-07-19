@@ -1,11 +1,8 @@
 package com.example.myapplication.data.repository
 
-import androidx.paging.Pager
 import androidx.paging.PagingData
-import androidx.paging.PagingSource
-import com.example.myapplication.model.Movie
-import com.example.myapplication.model.MovieAndDetail
-import com.example.myapplication.model.MoviePlayNow
+import com.example.myapplication.model.movie.Movie
+import com.example.myapplication.model.movie.MoviePlayNow
 import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {

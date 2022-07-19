@@ -2,7 +2,7 @@ package com.example.myapplication.presentation.viewholder
 
 import com.example.myapplication.databinding.ItemPortadaBinding
 import com.example.myapplication.presentation.base.BaseViewHolder
-import com.example.myapplication.model.MoviePlayNow
+import com.example.myapplication.model.movie.MoviePlayNow
 
 class MoviePostherViewHolder(
     private val binding: ItemPortadaBinding,

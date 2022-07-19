@@ -3,7 +3,7 @@ package com.example.myapplication.data.movie
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.myapplication.BuildConfig
-import com.example.myapplication.model.Movie
+import com.example.myapplication.model.movie.Movie
 import com.example.myapplication.utils.SIZE_W500
 import kotlin.math.roundToInt
 

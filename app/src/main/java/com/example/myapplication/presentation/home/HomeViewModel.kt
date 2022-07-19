@@ -5,7 +5,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.myapplication.data.repository.MovieRepository
 import com.example.myapplication.error.ResourceNotFoundException
-import com.example.myapplication.model.Movie
+import com.example.myapplication.model.movie.Movie
 import com.example.myapplication.presentation.base.BaseViewModel
 import com.example.myapplication.presentation.commons.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 @HiltViewModel
-class MoviesViewModel @Inject constructor(
+class HomeViewModel @Inject constructor(
     private val movieRepository: MovieRepository
 ) : BaseViewModel() {
 
@@ -31,7 +31,7 @@ class MoviesViewModel @Inject constructor(
     private val _moviesPostersFlow = MutableStateFlow<UIState>(UIState.Empty)
     val moviesPostersFlow: StateFlow<UIState> = _moviesPostersFlow.asStateFlow()
 
-    fun getMovies() {
+    fun getContactos() {
         viewModelScope.launch {
             movieRepository.getMoviePopular().catch {
                 if (it !is ResourceNotFoundException) {
@@ -46,18 +46,7 @@ class MoviesViewModel @Inject constructor(
 
 
 
-    fun getMoviesPosters() {
-        viewModelScope.launch {
-            movieRepository.getMoviePlayNow().catch {
-                if (it !is ResourceNotFoundException) {
-                    _moviesPostersFlow.value = UIState.Error(it.message)
-                }
-            }.collect {
-                _moviesPostersFlow.value = UIState.Success(it)
 
-            }
-        }
-    }
 
 
 }

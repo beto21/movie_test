@@ -7,7 +7,7 @@
 
         <variable
             name="movie"
-            type="com.example.myapplication.model.Movie" />
+            type="com.example.myapplication.model.movie.Movie" />
 
         <variable
             name="vm"

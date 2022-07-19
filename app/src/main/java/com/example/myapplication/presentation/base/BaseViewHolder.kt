@@ -12,6 +12,6 @@ abstract class BaseViewHolder<T>(
     abstract fun bindTo(data: T)
 
     init {
-        itemView.setOnClickListener { onClick(adapterPosition) }
+        itemView.setOnClickListener { onClick(bindingAdapterPosition) }
     }
 }

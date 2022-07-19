@@ -1,4 +1,4 @@
-package com.example.myapplication.presentation.home
+package com.example.myapplication.presentation.movies
 
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -7,10 +7,9 @@ import androidx.recyclerview.widget.ConcatAdapter
 import com.example.myapplication.databinding.FragmentMoviesBinding
 import com.example.myapplication.extensions.collectLastestLyfeCycleFlow
 import com.example.myapplication.extensions.showToast
-import com.example.myapplication.model.Movie
-import com.example.myapplication.model.MoviePlayNow
+import com.example.myapplication.model.movie.Movie
+import com.example.myapplication.model.movie.MoviePlayNow
 import com.example.myapplication.presentation.adapter.LoadStateAdapter
-import com.example.myapplication.presentation.adapter.MovieAdapter
 import com.example.myapplication.presentation.adapter.MoviePageAdapter
 import com.example.myapplication.presentation.adapter.MoviePosterAdapter
 import com.example.myapplication.presentation.base.BaseFragment
@@ -63,11 +62,7 @@ class MoviesFragment : BaseFragment<MoviesViewModel, FragmentMoviesBinding>
             addItemDecoration(SpaceItemDecorationVertical(32))
             adapter = concatAdapter
         }
-        binding.recyclerOne.apply {
-            setHasFixedSize(true)
-            setItemViewCacheSize(8)
-            adapter = moviePosterAdapter
-        }
+
 
 
     }

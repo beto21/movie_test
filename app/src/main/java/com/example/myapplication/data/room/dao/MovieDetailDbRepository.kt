@@ -1,6 +1,6 @@
 package com.example.myapplication.data.room.dao
 
-import com.example.myapplication.model.MovieDetail
+import com.example.myapplication.model.movie.MovieDetail
 
 interface MovieDetailDbRepository {
 

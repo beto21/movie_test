@@ -33,5 +33,9 @@
     <string name="no_favorites">Empty. you haven\'t added any movies to your favorites yet!</string>
     <string name="review_author_image">Review author image</string>
     <string name="poster">poster</string>
+    <string name="peliculas">Peliculas</string>
+    <string name="agenda">Agenda</string>
+    <string name="agregar_contacto">Agregar contacto</string>
+    <string name="empty_error">Campo vacio</string>
 
 </resources>

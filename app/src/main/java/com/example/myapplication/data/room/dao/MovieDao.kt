@@ -3,10 +3,10 @@ package com.example.myapplication.data.room.dao
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
-import com.example.myapplication.model.Movie
-import com.example.myapplication.model.MovieAndDetail
-import com.example.myapplication.model.MovieDetail
-import com.example.myapplication.model.MoviePlayNow
+import com.example.myapplication.model.movie.Movie
+import com.example.myapplication.model.movie.MovieAndDetail
+import com.example.myapplication.model.movie.MovieDetail
+import com.example.myapplication.model.movie.MoviePlayNow
 
 @Dao
 interface MovieDao : BaseDao<Movie>{

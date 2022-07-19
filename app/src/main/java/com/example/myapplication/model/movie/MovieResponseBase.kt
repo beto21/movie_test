@@ -1,4 +1,4 @@
-package com.example.myapplication.model
+package com.example.myapplication.model.movie
 
 abstract class MovieResponseBase<T> {
     abstract val results: List<T>

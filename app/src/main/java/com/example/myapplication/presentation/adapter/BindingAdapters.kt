@@ -8,9 +8,8 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.myapplication.R
-import com.example.myapplication.model.Genre
+import com.example.myapplication.model.movie.Genre
 import com.example.myapplication.utils.UiUtils
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup

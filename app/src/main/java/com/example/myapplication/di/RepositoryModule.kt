@@ -1,7 +1,9 @@
 package com.example.myapplication.di
 
 import com.example.myapplication.data.movie.ApiMovie
+import com.example.myapplication.data.repository.AgendaRepository
 import com.example.myapplication.data.repository.MovieRepository
+import com.example.myapplication.data.repository.impl.AgendaRepositoryImpl
 import com.example.myapplication.data.repository.impl.MovieRepositoryImpl
 import com.example.myapplication.data.room.AppDb
 import com.santander.globile.superherotest.utils.network.ConnectionProvider
@@ -25,4 +27,8 @@ object RepositoryModule {
         return MovieRepositoryImpl(api, db, connectionProvider)
     }
 
+    @Provides
+    fun provideRepositoryAgenda(db: AppDb): AgendaRepository {
+        return AgendaRepositoryImpl(db)
+    }
 }
