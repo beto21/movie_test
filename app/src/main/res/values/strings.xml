@@ -37,5 +37,10 @@
     <string name="agenda">Agenda</string>
     <string name="agregar_contacto">Agregar contacto</string>
     <string name="empty_error">Campo vacio</string>
+    <string name="apellidos">Apellidos:</string>
+    <string name="correo">Correo:</string>
+    <string name="direcci_n">Dirección:</string>
+    <string name="tel_fono">Teléfono:</string>
+    <string name="nombre">Nombre:</string>
 
 </resources>

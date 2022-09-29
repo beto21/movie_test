@@ -10,18 +10,18 @@ interface BaseDao<T> {
     suspend fun insert(entity: T)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(entities: List<T>)
+    suspend fun insert(entities: List<T>)
 
     @Update
-    fun update(entity: T)
+    suspend fun update(entity: T)
 
     @Update
-    fun updateAll(entities: List<T>)
+    suspend fun updateAll(entities: List<T>)
 
     @Delete
-    fun delete(entity: T)
+    suspend fun delete(entity: T)
 
     @Delete
-    fun delete(entities: List<T>)
+    suspend fun delete(entities: List<T>)
 
 }

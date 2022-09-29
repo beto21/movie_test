@@ -15,7 +15,7 @@ import com.example.myapplication.model.movie.MoviePlayNow
     [Movie::class,
         MovieDetail::class,
         MoviePlayNow::class,
-    Contacto::class], version = 1, exportSchema = false
+    Contacto::class], version = 2, exportSchema = false
 )
 
 @TypeConverters(

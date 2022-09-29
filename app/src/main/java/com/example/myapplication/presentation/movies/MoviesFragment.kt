@@ -45,8 +45,11 @@ class MoviesFragment : BaseFragment<MoviesViewModel, FragmentMoviesBinding>
         }
     }
 
+    companion object {
+        @JvmStatic
+        fun newInstance() = MoviesFragment()
 
-
+    }
     override fun setupUI() {
         super.setupUI()
         binding.vm = vm

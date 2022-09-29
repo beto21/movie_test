@@ -1,11 +1,14 @@
 package com.example.myapplication.presentation.agenda
 
+import android.util.Log
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.R
 import com.example.myapplication.databinding.AgendaFragmentBinding
 import com.example.myapplication.extensions.collectLastestLyfeCycleFlow
 import com.example.myapplication.extensions.showToast
 import com.example.myapplication.model.agenda.Contacto
+import com.example.myapplication.presentation.adapter.ContactoAdapter
 import com.example.myapplication.presentation.base.BaseFragment
 import com.example.myapplication.presentation.commons.UIState
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,8 +21,8 @@ class AgendaFragment : BaseFragment<AgendaViewModel, AgendaFragmentBinding>
     (AgendaFragmentBinding::inflate) {
     override val vm: AgendaViewModel by viewModels()
     override val TAG: String = AgendaFragment::class.java.name
-    private val ContactoAdapter by lazy {
-        com.example.myapplication.presentation.adapter.ContactoAdapter() {
+    private val contactoAdapter by lazy {
+        ContactoAdapter {
 
         }
     }
@@ -28,7 +31,7 @@ class AgendaFragment : BaseFragment<AgendaViewModel, AgendaFragmentBinding>
     override fun setupUI() {
         super.setupUI()
         vm.getContactos()
-
+        initRecyclerView()
         binding.button.setOnClickListener {
             if (validateCampos()) {
                 vm.addContacto(
@@ -46,10 +49,18 @@ class AgendaFragment : BaseFragment<AgendaViewModel, AgendaFragmentBinding>
 
     }
 
-    fun validateCampos(): Boolean {
+    private fun initRecyclerView() {
+        binding.recyclerViewContactos.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+            adapter = contactoAdapter
+        }
+    }
+
+    private fun validateCampos(): Boolean {
         var isValid = true
         val message = requireActivity().getString(R.string.empty_error)
-        with(binding.include) {
+        binding.include.apply{
             if (nombre.text.isNullOrEmpty()) {
                 nombre.error = message
                 isValid = isValid && false
@@ -97,8 +108,9 @@ class AgendaFragment : BaseFragment<AgendaViewModel, AgendaFragmentBinding>
     private fun observerContactos() {
         requireActivity().collectLastestLyfeCycleFlow(vm.contactosFlow) {
             if (it is UIState.Success<*>) {
-                ContactoAdapter.set(it.data as List<Contacto>)
+                contactoAdapter.set(it.data as List<Contacto>)
             } else if (it is UIState.Error) {
+                Log.e(TAG, "Error: ${it.message}")
                 requireActivity().showToast(it.message!!)
             }
 
